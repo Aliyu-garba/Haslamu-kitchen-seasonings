@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes & Products - Haslamu Kitchen Seasonings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cream: #f9f5f0;
+            --soft-brown: #a58f73;
+            --gold: #d4af37;
+            --olive-green: #6b8e23;
+            --dark-brown: #5d4037;
+            --light-cream: #fffdf7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --accent: #e67e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-cream);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: 600;
+            color: var(--dark-brown);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--olive-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 10px;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: white;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+        }
+
+        .nav-tab.active {
+            background: var(--olive-green);
+            color: white;
+            box-shadow: 0 6px 15px rgba(107, 142, 35, 0.2);
+        }
+
+        .nav-tab:hover:not(.active) {
+            border-color: var(--olive-green);
+        }
+
+        /* Hero Section */
+        .recipes-hero {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('recipes-hero.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .recipes-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .recipes-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .recipes-hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .btn-hero:hover {
+            background-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 80px 0;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Recipes Grid */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-brown);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .recipe-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s, box-shadow 0.4s;
+            position: relative;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-image {
+            height: 220px;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .recipe-image:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.1));
+        }
+
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .recipe-card:hover .recipe-image img {
+            transform: scale(1.05);
+        }
+
+        .recipe-content {
+            padding: 25px;
+        }
+
+        .recipe-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--dark-brown);
+        }
+
+        .recipe-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--olive-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(107, 142, 35, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(107, 142, 35, 0.3);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Recipe Detail Section */
+        .recipe-detail {
+            display: none;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light-cream) 0%, #f5f1ea 100%);
+            min-height: 100vh;
+        }
+
+        .recipe-detail.active {
+            display: block;
+        }
+
+        .detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-image {
+            height: 450px;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-content {
+            padding: 50px;
+        }
+
+        .detail-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-brown);
+            line-height: 1.2;
+        }
+
+        .detail-intro {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.7;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+        }
+
+        .detail-section h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--dark-brown);
+            border-bottom: 2px solid var(--cream);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-section h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .ingredients-list, .instructions-list {
+            padding-left: 10px;
+        }
+
+        .ingredients-list li, .instructions-list li {
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .ingredients-list li:before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .instructions-list li {
+            counter-increment: step;
+            margin-bottom: 25px;
+            padding-left: 40px;
+        }
+
+        .instructions-list li:before {
+            content: counter(step);
+            background-color: var(--accent);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .seasoning-note {
+            background: linear-gradient(135deg, var(--olive-green) 0%, #7ca529 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 40px 0;
+            color: white;
+            box-shadow: 0 5px 15px rgba(107, 142, 35, 0.2);
+        }
+
+        .seasoning-note p {
+            font-style: italic;
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            margin-top: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--soft-brown);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(165, 143, 115, 0.2);
+        }
+
+        .back-btn:hover {
+            background-color: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(165, 143, 115, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, var(--olive-green) 0%, #7ca529 100%);
+            padding: 25px;
+            color: white;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .product-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .usage-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-brown);
+            display: flex;
+            align-items: center;
+        }
+
+        .usage-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .usage-list {
+            padding-left: 10px;
+            margin-bottom: 25px;
+        }
+
+        .usage-list li {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .usage-list li:before {
+            content: '✓';
+            color: var(--olive-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .footer-logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.4rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .recipes-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .recipes-hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .detail-image {
+                height: 300px;
+            }
+
+            .detail-content {
+                padding: 30px;
+            }
+
+            .detail-title {
+                font-size: 2rem;
+            }
+
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-img">
+                    <img src="logo.jpg" alt="Haslamu Kitchen Logo">
+                </div>
+                Haslamu Kitchen
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="container">
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-target="recipes">Recipes</div>
+            <div class="nav-tab" data-target="products">Our Products</div>
+        </div>
+    </div>
+
+    <!-- Recipes Hero Section -->
+    <section class="recipes-hero">
+        <div class="recipes-hero-content">
+            <h1>Culinary Creations</h1>
+            <p>Discover delicious recipes crafted with Haslamu Kitchen's authentic seasonings</p>
+            <a href="#recipes-grid" class="btn-hero">Explore Recipes</a>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section class="content-section active" id="recipes-section">
+        <div class="container">
+            <h2 class="section-title">Featured Recipes</h2>
+            <p class="section-subtitle">Each recipe is carefully crafted to showcase the unique flavors of our premium seasonings</p>
+            <div class="recipes-grid" id="recipes-container">
+                <!-- Recipe cards will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="content-section" id="products-section">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <p class="section-subtitle">Discover how to use each of our premium seasonings in your cooking</p>
+            <div class="products-grid" id="products-container">
+                <!-- Product cards will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Detail Sections -->
+    <div id="recipe-details">
+        <!-- Recipe details will be dynamically added here -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <div class="footer-logo-img">
+                    <img src="logo.jpg" alt="Haslamu Kitchen Logo">
+                </div>
+                Haslamu Kitchen
+            </div>
+            <p class="footer-tagline">Supplying carefully prepared spices for individuals, restaurants, and wholesale buyers who demand quality.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Haslamu Kitchen Seasonings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Recipe Data
+        const recipes = [
+            {
+                id: 1,
+                title: "Jollof Rice",
+                description: "A classic West African one-pot rice dish with rich tomato flavor and aromatic spices.",
+                image: "jollof-rice.jpg",
+                intro: "This beloved West African dish is a celebration of flavor and color. Our Jollof Rice Seasoning brings out the perfect balance of tomato richness and aromatic spices that make this dish a family favorite.",
+                ingredients: [
+                    "2 cups long-grain parboiled rice",
+                    "1 large onion, chopped",
+                    "3 tomatoes, blended",
+                    "1 red bell pepper, blended",
+                    "1/4 cup vegetable oil",
+                    "2 tablespoons Haslamu Kitchen Jollof Rice Seasoning",
+                    "1 teaspoon Haslamu Kitchen Thyme",
+                    "1 teaspoon Haslamu Kitchen Garlic Powder",
+                    "2 cups chicken or vegetable stock",
+                    "Salt to taste"
+                ],
+                instructions: [
+                    "Heat oil in a large pot over medium heat. Add chopped onions and sauté until translucent.",
+                    "Add blended tomatoes and bell pepper. Cook for 10-15 minutes until the mixture thickens and oil begins to separate.",
+                    "Stir in Haslamu Kitchen Jollof Rice Seasoning, Thyme, and Garlic Powder. Cook for 2 more minutes.",
+                    "Add rice to the pot and stir to coat with the tomato mixture.",
+                    "Pour in stock, add salt to taste, and bring to a boil.",
+                    "Reduce heat to low, cover the pot, and simmer for 20-25 minutes until rice is cooked and liquid is absorbed.",
+                    "Fluff the rice with a fork before serving. Enjoy!"
+                ],
+                seasoning: "Jollof Rice Seasoning"
+            },
+            {
+                id: 2,
+                title: "Fried Rice",
+                description: "A flavorful and colorful rice dish with vegetables and your choice of protein.",
+                image: "fried-rice.jpg",
+                intro: "Our Fried Rice Seasoning gives this classic dish a delightful aroma and balanced flavor that pairs perfectly with vegetables and protein of your choice.",
+                ingredients: [
+                    "3 cups cooked and cooled rice",
+                    "1 cup mixed vegetables (carrots, peas, corn)",
+                    "1 onion, diced",
+                    "2 eggs, beaten",
+                    "2 tablespoons vegetable oil",
+                    "2 tablespoons Haslamu Kitchen Fried Rice Seasoning",
+                    "1 teaspoon Haslamu Kitchen Garlic Powder",
+                    "2 tablespoons soy sauce",
+                    "Spring onions for garnish",
+                    "Cooked chicken or shrimp (optional)"
+                ],
+                instructions: [
+                    "Heat oil in a large wok or pan over high heat.",
+                    "Add diced onions and stir-fry for 1 minute until fragrant.",
+                    "Push onions to one side and pour beaten eggs on the other side. Scramble the eggs until cooked.",
+                    "Add mixed vegetables and stir-fry for 2-3 minutes.",
+                    "Add cooked rice, breaking up any clumps.",
+                    "Sprinkle Haslamu Kitchen Fried Rice Seasoning and Garlic Powder over the rice.",
+                    "Add soy sauce and stir-fry for 3-4 minutes until everything is well combined.",
+                    "Garnish with spring onions and serve hot."
+                ],
+                seasoning: "Fried Rice Seasoning"
+            },
+            {
+                id: 3,
+                title: "Nigerian Pepper Soup",
+                description: "A spicy and aromatic broth perfect for cold days or when you need a comforting meal.",
+                image: "pepper-soup.jpg",
+                intro: "This traditional Nigerian Pepper Soup is known for its healing properties and comforting warmth. Our Pepper Soup Spices provide the perfect blend of heat and aroma.",
+                ingredients: [
+                    "500g goat meat, fish or chicken",
+                    "1 onion, sliced",
+                    "2 scotch bonnet peppers (adjust to taste)",
+                    "2 tablespoons Haslamu Kitchen Pepper Soup Spices",
+                    "1 teaspoon Haslamu Kitchen Thyme",
+                    "1 teaspoon Haslamu Kitchen Garlic Powder",
+                    "1 stock cube",
+                    "1 liter water",
+                    "Salt to taste",
+                    "Utazi leaves or spinach (for garnish)"
+                ],
+                instructions: [
+                    "Place meat in a pot with sliced onions, stock cube, and enough water to cover.",
+                    "Boil until meat is tender (about 30-40 minutes).",
+                    "Add Haslamu Kitchen Pepper Soup Spices, Thyme, and Garlic Powder.",
+                    "Add scotch bonnet peppers and salt to taste.",
+                    "Simmer for 10-15 minutes to allow flavors to meld.",
+                    "Garnish with utazi leaves or spinach before serving.",
+                    "Serve hot with boiled yam, plantain, or bread."
+                ],
+                seasoning: "Pepper Soup Spices"
+            },
+            {
+                id: 4,
+                title: "Spicy Chicken Suya with Yaji",
+                description: "Grilled skewered chicken with the authentic Suya flavor from Northern Nigeria.",
+                image: "chicken-suya.jpg",
+                intro: "Suya is a popular West African street food. Our Yaji (Suya Spice) blend gives this grilled chicken its signature smoky, spicy flavor that's simply irresistible.",
+                ingredients: [
+                    "500g chicken breast, cut into cubes",
+                    "3 tablespoons Haslamu Kitchen Yaji (Suya Spice)",
+                    "1 tablespoon Haslamu Kitchen Garlic Powder",
+                    "1 onion, sliced",
+                    "2 tablespoons peanut oil",
+                    "1 stock cube, crushed",
+                    "1 teaspoon salt",
+                    "Skewers (soaked in water if wooden)",
+                    "Fresh tomatoes and onions for serving"
+                ],
+                instructions: [
+                    "In a bowl, mix chicken cubes with Haslamu Kitchen Yaji, Garlic Powder, crushed stock cube, salt, and peanut oil.",
+                    "Cover and marinate for at least 2 hours or overnight for best results.",
+                    "Thread marinated chicken onto skewers.",
+                    "Grill on medium-high heat for 10-15 minutes, turning occasionally until cooked through and slightly charred.",
+                    "Serve with sliced fresh onions, tomatoes, and extra Yaji spice for dipping."
+                ],
+                seasoning: "Yaji"
+            }
+        ];
+
+        // Product Data (Arrarabi removed)
+        const products = [
+            {
+                id: 1,
+                name: "Curry Gino",
+                subtitle: "Bright and aromatic seasoning",
+                description: "Curry Gino is our signature bright and aromatic seasoning blend perfect for stews, jollof rice, and sauces. It enhances color while adding flavor depth and boosting aroma.",
+                usage: [
+                    "Use 1-2 tablespoons for stews and sauces",
+                    "Add to jollof rice for enhanced color and flavor",
+                    "Mix with oil as a marinade for meats",
+                    "Sprinkle on vegetables before roasting"
+                ]
+            },
+            {
+                id: 2,
+                name: "Curry Masala",
+                subtitle: "Deep, warm spice blend",
+                description: "Our Curry Masala offers a deep, warm spice blend ideal for rich soups and rice dishes. It adds richness, warmth, and layered flavor to your cooking.",
+                usage: [
+                    "Perfect for rich soups and curries",
+                    "Use in rice dishes for added depth",
+                    "Mix with yogurt for meat marinades",
+                    "Add to vegetable dishes for warmth"
+                ]
+            },
+            {
+                id: 3,
+                name: "Spices",
+                subtitle: "General mixed spice blend",
+                description: "Our general Spices blend is a versatile everyday seasoning for soups, stews, vegetables, and meat. It provides universal flavor balance perfect for daily cooking.",
+                usage: [
+                    "All-purpose seasoning for everyday cooking",
+                    "Add to soups and stews during cooking",
+                    "Season meats before grilling or frying",
+                    "Sprinkle on vegetables for enhanced flavor"
+                ]
+            },
+            {
+                id: 4,
+                name: "Mix Spices",
+                subtitle: "Premium fusion of spices",
+                description: "Mix Spices is our premium fusion of spices for both professional and home kitchens. It offers rich complexity perfect for meal enhancement.",
+                usage: [
+                    "Use in complex dishes for layered flavor",
+                    "Perfect for special occasion meals",
+                    "Add to marinades for premium taste",
+                    "Sprinkle on finished dishes as garnish"
+                ]
+            },
+            {
+                id: 5,
+                name: "Pepper Soup Spices",
+                subtitle: "Traditional spice blend",
+                description: "Our Pepper Soup Spices provide the traditional blend for Nigerian pepper soup. It delivers warm, aromatic, comforting, and flavorful results.",
+                usage: [
+                    "Essential for authentic pepper soup",
+                    "Add to broths for extra warmth",
+                    "Use in other spicy soups and stews",
+                    "Season meats before boiling for soup"
+                ]
+            },
+            {
+                id: 6,
+                name: "Jollof Rice",
+                subtitle: "Specialized rice seasoning",
+                description: "Our Jollof Rice seasoning is specially created for perfect jollof color, aroma, and flavor. It provides balanced taste, enhances color, and ensures smooth consistency.",
+                usage: [
+                    "Essential for authentic jollof rice",
+                    "Add to tomato base before adding rice",
+                    "Can be used in other tomato-based rice dishes",
+                    "Mix with oil for flavorful fried rice"
+                ]
+            },
+            {
+                id: 7,
+                name: "Fried Rice",
+                subtitle: "Light, fresh blend",
+                description: "Our Fried Rice seasoning is a light, fresh blend specifically for fried rice and stir-fried meals. It lifts aroma and keeps taste subtle and vibrant.",
+                usage: [
+                    "Perfect for all types of fried rice",
+                    "Add during the final stages of cooking",
+                    "Use in stir-fried vegetable dishes",
+                    "Season noodles and pasta dishes"
+                ]
+            },
+            {
+                id: 8,
+                name: "Turmeric",
+                subtitle: "Natural golden root powder",
+                description: "Our Turmeric powder comes from natural golden turmeric root. It offers anti-inflammatory properties, digestion support, and natural coloring for dishes.",
+                usage: [
+                    "Add to rice for beautiful golden color",
+                    "Use in soups and stews for health benefits",
+                    "Mix with other spices for curry blends",
+                    "Add to smoothies for extra nutrition"
+                ]
+            },
+            {
+                id: 9,
+                name: "Thyme",
+                subtitle: "Classic herbal seasoning",
+                description: "Our Thyme leaves provide classic herbal seasoning that enhances aroma and blends well with stews and marinades. It's a kitchen essential for depth of flavor.",
+                usage: [
+                    "Add to stews and soups during cooking",
+                    "Use in meat and poultry marinades",
+                    "Sprinkle on roasted vegetables",
+                    "Infuse in oils for cooking"
+                ]
+            },
+            {
+                id: 10,
+                name: "Yaji",
+                subtitle: "Smoky, spicy suya pepper",
+                description: "Yaji is our smoky, spicy seasoning for grilled meats and suya. It adds heat, aroma, and the signature suya flavor that makes Nigerian street food so popular.",
+                usage: [
+                    "Essential for authentic suya preparation",
+                    "Use as dry rub for grilled meats",
+                    "Add to peanut-based sauces",
+                    "Sprinkle on roasted nuts for spicy snack"
+                ]
+            },
+            {
+                id: 11,
+                name: "Garlic",
+                subtitle: "Strong savory powder",
+                description: "Our Garlic powder provides strong savory depth and natural wellness benefits. It enhances flavor while supporting the immune system.",
+                usage: [
+                    "Add to virtually any savory dish",
+                    "Use in marinades and rubs for meats",
+                    "Mix into dough for flavored breads",
+                    "Sprinkle on vegetables before roasting"
+                ]
+            },
+            {
+                id: 12,
+                name: "Chitta",
+                subtitle: "Local white pepper blend",
+                description: "Chitta is our mild and aromatic pepper blend for delicate soups. It provides smooth balanced heat with gentle aroma that doesn't overpower dishes.",
+                usage: [
+                    "Perfect for light soups and broths",
+                    "Use in cream-based sauces",
+                    "Add to fish and seafood dishes",
+                    "Season delicate vegetables"
+                ]
+            }
+        ];
+
+        // Generate WhatsApp link for a product
+        function generateWhatsAppLink(productName) {
+            const phoneNumber = "2348133376629";
+            const encodedProductName = encodeURIComponent(productName);
+            return `https://wa.me/${phoneNumber}?text=Hello%2C%20I%20would%20like%20to%20buy%20${encodedProductName}%20from%20Haslamu%20Kitchen`;
+        }
+
+        // Render recipe cards
+        function renderRecipeCards() {
+            const recipesContainer = document.getElementById('recipes-container');
+            recipesContainer.innerHTML = '';
+            
+            recipes.forEach(recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.className = 'recipe-card';
+                recipeCard.innerHTML = `
+                    <div class="recipe-image">
+                        <img src="${recipe.image}" alt="${recipe.title}">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">${recipe.title}</h3>
+                        <p class="recipe-description">${recipe.description}</p>
+                        <button class="btn view-recipe-btn" data-id="${recipe.id}"><i class="fas fa-utensils"></i> View Recipe</button>
+                    </div>
+                `;
+                recipesContainer.appendChild(recipeCard);
+            });
+
+            // Add event listeners to view recipe buttons
+            document.querySelectorAll('.view-recipe-btn').forEach(button => {
+                button.addEventListener('click', showRecipeDetail);
+            });
+        }
+
+        // Render product cards
+        function renderProductCards() {
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-header">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-subtitle">${product.subtitle}</p>
+                    </div>
+                    <div class="product-content">
+                        <p class="product-description">${product.description}</p>
+                        <h4 class="usage-title"><i class="fas fa-fire"></i> How to Use</h4>
+                        <ul class="usage-list">
+                            ${product.usage.map(use => `<li>${use}</li>`).join('')}
+                        </ul>
+                        <a href="${generateWhatsAppLink(product.name)}" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Order ${product.name}
+                        </a>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        // Render recipe details
+        function renderRecipeDetails() {
+            const recipeDetailsContainer = document.getElementById('recipe-details');
+            recipeDetailsContainer.innerHTML = '';
+            
+            recipes.forEach(recipe => {
+                const recipeDetail = document.createElement('section');
+                recipeDetail.className = 'recipe-detail';
+                recipeDetail.id = `recipe-${recipe.id}`;
+                recipeDetail.innerHTML = `
+                    <div class="container">
+                        <button class="back-btn" onclick="hideRecipeDetail()"><i class="fas fa-arrow-left"></i> Back to Recipes</button>
+                        <div class="detail-container">
+                            <div class="detail-image">
+                                <img src="${recipe.image}" alt="${recipe.title}">
+                            </div>
+                            <div class="detail-content">
+                                <h2 class="detail-title">${recipe.title}</h2>
+                                <p class="detail-intro">${recipe.intro}</p>
+                                
+                                <div class="detail-section">
+                                    <h3><i class="fas fa-list"></i> Ingredients</h3>
+                                    <ul class="ingredients-list">
+                                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                
+                                <div class="detail-section">
+                                    <h3><i class="fas fa-list-ol"></i> Instructions</h3>
+                                    <ol class="instructions-list">
+                                        ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+                                    </ol>
+                                </div>
+                                
+                                <div class="seasoning-note">
+                                    <p>Season to taste using Haslamu Kitchen Seasonings for best flavor.</p>
+                                </div>
+                                
+                                <a href="${generateWhatsAppLink(recipe.seasoning)}" class="whatsapp-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Buy ${recipe.seasoning}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                recipeDetailsContainer.appendChild(recipeDetail);
+            });
+        }
+
+        // Show recipe detail
+        function showRecipeDetail(e) {
+            const recipeId = e.target.getAttribute('data-id');
+            const recipesSection = document.getElementById('recipes-section');
+            const recipeDetail = document.getElementById(`recipe-${recipeId}`);
+            
+            recipesSection.style.display = 'none';
+            recipeDetail.classList.add('active');
+            
+            // Scroll to top of recipe detail
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hide recipe detail
+        function hideRecipeDetail() {
+            const recipesSection = document.getElementById('recipes-section');
+            const recipeDetails = document.querySelectorAll('.recipe-detail');
+            
+            recipesSection.style.display = 'block';
+            recipeDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Scroll to recipes section
+            document.getElementById('recipes-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Tab navigation
+        function setupTabNavigation() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target section
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(`${target}-section`).classList.add('active');
+                });
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRecipeCards();
+            renderProductCards();
+            renderRecipeDetails();
+            setupTabNavigation();
+        });
+    </script>
+</body>
+</html>

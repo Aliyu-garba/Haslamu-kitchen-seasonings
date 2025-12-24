@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - Haslamu Kitchen Seasonings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cream: #f9f5f0;
+            --soft-brown: #a58f73;
+            --gold: #d4af37;
+            --olive-green: #6b8e23;
+            --dark-brown: #5d4037;
+            --light-cream: #fffdf7;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --accent: #e67e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-cream);
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--olive-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Hero Section */
+        .reviews-hero {
+            background: linear-gradient(135deg, rgba(93, 64, 55, 0.85), rgba(107, 142, 35, 0.85)), url('reviews-hero.jpg') no-repeat center center/cover;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .reviews-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .reviews-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .reviews-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .reviews-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--dark-brown);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--olive-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Featured Review */
+        .featured-review {
+            background: linear-gradient(135deg, var(--olive-green) 0%, #7ca529 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-review:before {
+            content: '"';
+            position: absolute;
+            top: -40px;
+            left: 30px;
+            font-size: 15rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .featured-review-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-review-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .featured-review-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .featured-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--olive-green);
+            font-weight: bold;
+        }
+
+        .featured-author-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .featured-author-info p {
+            opacity: 0.9;
+        }
+
+        /* Reviews Grid */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin: 60px 0;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--olive-green);
+            border: 2px solid var(--gold);
+        }
+
+        .reviewer-details h4 {
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 5px;
+        }
+
+        .reviewer-details p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .review-text:before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--cream);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .review-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* Verified Badge */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--cream);
+            color: var(--olive-green);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .verified-badge i {
+            margin-right: 5px;
+        }
+
+        /* Business Partnerships */
+        .partnerships-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .partnerships-title {
+            font-size: 2rem;
+            color: var(--dark-brown);
+            margin-bottom: 40px;
+        }
+
+        .partnerships-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .partnership-logo {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .partnership-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .partnership-logo img {
+            max-width: 100%;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, #4a342b 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .cta-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark-brown);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-cta:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .footer-logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-line {
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin: 40px 0;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partnerships-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reviews-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .featured-review {
+                padding: 30px;
+            }
+            
+            .featured-review-text {
+                font-size: 1.1rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .partnerships-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .review-card {
+                padding: 25px;
+            }
+            
+            .featured-review-author {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-img">
+                    <img src="logo.jpg" alt="Haslamu Kitchen Logo">
+                </div>
+                Haslamu Kitchen
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="reviews-hero">
+        <div class="reviews-hero-content">
+            <h1>What Our Customers Say</h1>
+            <p>Real reviews from home cooks, restaurants, and supermarkets across Nigeria</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Introduction -->
+        <section class="reviews-section">
+            <h2 class="section-title">Trusted by Thousands</h2>
+            <p class="section-subtitle">From family kitchens to professional restaurants, Haslamu Kitchen Seasonings has become the go-to choice for authentic Nigerian flavor.</p>
+
+            <!-- Stats -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Restaurants & Eateries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Supermarkets Nationwide</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+
+            <!-- Featured Review -->
+            <div class="featured-review">
+                <div class="featured-review-content">
+                    <div class="featured-review-text">
+                        "As a restaurant owner for over 15 years, I've tried countless seasoning brands. Haslamu Kitchen changed everything for us. The consistency in flavor and quality has helped us maintain our signature taste across all three locations. Our customers consistently compliment the depth of flavor in our dishes."
+                    </div>
+                    <div class="featured-review-author">
+                        <div class="featured-avatar">CC</div>
+                        <div class="featured-author-info">
+                            <h4>Chef Chinedu Okonkwo</h4>
+                            <p>Owner, Capital Cuisine Restaurant (Abuja, Lagos, Port Harcourt)</p>
+                            <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Business Partner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Reviews Grid -->
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">AE</div>
+                            <div class="reviewer-details">
+                                <h4>Amina Eze</h4>
+                                <p>Home Cook & Caterer</p>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        I cater for weddings and parties, and Haslamu's Jollof Rice Seasoning has become my secret weapon. Every event, I get asked for the recipe! The flavor is consistently perfect, and it saves me so much time. The Fried Rice Seasoning is also excellent - my customers always ask for seconds.
+                    </div>
+                    <div class="review-date">December 15, 2023</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">SM</div>
+                            <div class="reviewer-details">
+                                <h4>Spar Market Nigeria</h4>
+                                <p>Supermarket Chain</p>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Official Retail Partner</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        We've been stocking Haslamu Kitchen Seasonings in our 12 locations for 8 months now, and the sales growth has been remarkable. Customers keep coming back for more because of the quality. The packaging is professional, and the products consistently fly off our shelves. Highly recommend for any supermarket.
+                    </div>
+                    <div class="review-date">November 28, 2023</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">BO</div>
+                            <div class="reviewer-details">
+                                <h4>Bukky Olamide</h4>
+                                <p>Food Vendor & Restaurant Owner</p>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Business Partner</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        Running a buka in Lagos Mainland, I need seasonings that deliver every single time. Haslamu's Pepper Soup Spices and Curry Masala have transformed my business. My customers notice the difference and keep returning. The Yaji for suya is the best I've used - authentic Northern flavor.
+                    </div>
+                    <div class="review-date">November 10, 2023</div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">RO</div>
+                            <div class="reviewer-details">
+                                <h4>Rita Okafor</h4>
+                                <p>Home Cook & Mother of Three</p>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        As a busy mom, Haslamu Kitchen Seasonings have been a game-changer. My family can taste the difference from other brands. The General Mix Spices is perfect for everyday cooking, and the Thyme Leaves are so aromatic. Even my picky eaters finish their plates when I use Haslamu seasonings.
+                    </div>
+                    <div class="review-date">October 25, 2023</div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">TE</div>
+                            <div class="reviewer-details">
+                                <h4>Tasty Eats Catering</h4>
+                                <p>Event Catering Company</p>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Official Business Partner</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        We cater events from 50 to 500 people, and consistency is everything. Haslamu Kitchen Seasonings deliver the same excellent flavor every single time. The bulk packaging options are perfect for our needs, and their customer service is exceptional. Our clients consistently compliment the authentic Nigerian flavors.
+                    </div>
+                    <div class="review-date">October 18, 2023</div>
+                </div>
+            </div>
+
+            <!-- Business Partnerships -->
+            <div class="partnerships-section">
+                <h3 class="partnerships-title">Trusted By These Brands</h3>
+                <div class="partnerships-grid">
+                    <div class="partnership-logo">
+                        <div style="font-weight: bold; font-size: 1.5rem; color: var(--olive-green);">SPAR Market</div>
+                    </div>
+                    <div class="partnership-logo">
+                        <div style="font-weight: bold; font-size: 1.5rem; color: var(--dark-brown);">Capital Cuisine</div>
+                    </div>
+                    <div class="partnership-logo">
+                        <div style="font-weight: bold; font-size: 1.5rem; color: var(--accent);">Tasty Eats</div>
+                    </div>
+                    <div class="partnership-logo">
+                        <div style="font-weight: bold; font-size: 1.5rem; color: var(--olive-green);">City Mall Stores</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h3 class="cta-title">Join Thousands of Satisfied Customers</h3>
+                <p class="cta-text">Experience the Haslamu Kitchen difference in your cooking today. Whether you're cooking for your family or running a food business, our seasonings will elevate your dishes.</p>
+                <a href="index.html" class="btn-cta">Shop Our Seasonings</a>
+            </div>
+
+            <!-- Brand Line -->
+            <div class="brand-line">
+                Haslamu Kitchen Seasonings – Bringing real flavor to every meal.
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <div class="footer-logo-img">
+                    <img src="logo.jpg" alt="Haslamu Kitchen Logo">
+                </div>
+                Haslamu Kitchen
+            </div>
+            <p style="max-width: 600px; margin: 20px auto; color: #ddd;">Carefully prepared spices for individuals, restaurants, and wholesale buyers who demand quality.</p>
+            <div class="footer-bottom" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <p>&copy; 2023 Haslamu Kitchen Seasonings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

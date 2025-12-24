@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haslamu Kitchen Seasonings | Pure Taste for Every Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f8f4e9;
+            --soft-brown: #a58f73;
+            --gold: #d4af37;
+            --olive-green: #6b8e23;
+            --dark-brown: #5d4037;
+            --light-cream: #fffdf7;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-cream);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark-brown);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--light-cream);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--olive-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            color: var(--dark-brown);
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--olive-green);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--olive-green);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Updated Hero Section with product image background */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--olive-green);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Introduction Section */
+        .intro {
+            padding: 80px 0;
+            background-color: var(--cream);
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--dark-brown);
+        }
+
+        .intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark-brown);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-brown);
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--olive-green);
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .product-benefits {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .product-benefits li {
+            margin-bottom: 5px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        .floating-whatsapp i {
+            color: white;
+            font-size: 28px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: var(--light-cream);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: left 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-img">
+                    <img src="logo.jpg" alt="Haslamu Kitchen Logo">
+                </div>
+                Haslamu Kitchen
+            </a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section - Updated with product image background -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>HASLAMU KITCHEN SEASONINGS</h1>
+            <p>Bringing Pure Taste to Every Home.</p>
+            <a href="#products" class="btn">Shop Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro">
+        <div class="container">
+            <h2>Who We Serve</h2>
+            <p>Haslamu Kitchen Seasonings is built to serve every level of the food business and home kitchen.
+            We supply carefully prepared spices for:
+            Restaurants & Food Vendors – consistent taste, strong aroma, and reliable supply
+            Supermarkets & Big Shops – wholesale quantities with professional packaging
+            Individuals & Home Cooks – everyday seasonings made with care and tradition
+            Whether you’re cooking for customers or family, Haslamu Kitchen delivers real flavor you can trust.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2348068724933?text=Hello%2C%20I%20would%20like%20to%20place%20an%20order%20from%20Haslamu%20Kitchen%20Seasonings" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Haslamu Kitchen</h3>
+                    <p>Bringing pure, traditional flavors to your kitchen with carefully selected spices and seasonings.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Products</a></li>
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="delivery.html">Delivery Policy</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> New millenium city </li>
+                        <li><i class="fas fa-phone"></i> 08068724933</li>
+                        <li><i class="fas fa-envelope"></i> info@haslamukitchen.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Haslamu Kitchen Seasonings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Data with real images and prices in Naira
+        const products = [
+            {
+                id: 1,
+                name: "Curry Gino",
+                description: "Bright and aromatic seasoning for stews, jollof, and sauces.",
+                benefits: ["Enhances color", "Adds flavor depth", "Boosts aroma"],
+                price: 1850,
+                image: "curry-gino.jpg"
+            },
+            {
+                id: 2,
+                name: "Curry Masala",
+                description: "Deep, warm spice blend ideal for rich soups and rice dishes.",
+                benefits: ["Adds richness", "Warmth", "Layered flavor"],
+                price: 2100,
+                image: "curry-masala.jpg"
+            },
+            {
+                id: 3,
+                name: "General Spices Mix",
+                description: "Versatile everyday seasoning for soups, stews, vegetables, and meat.",
+                benefits: ["Universal flavor balance", "For daily cooking"],
+                price: 1750,
+                image: "general-spices-mix.jpg"
+            },
+            {
+                id: 4,
+                name: "Mixed Spices Premium",
+                description: "Premium fusion of spices for both professional and home kitchens.",
+                benefits: ["Rich complexity", "Perfect for meal enhancement"],
+                price: 2850,
+                image: "mixed-spices-premium.jpg"
+            },
+            {
+                id: 5,
+                name: "Pepper Soup Spices",
+                description: "Traditional spice blend for Nigerian pepper soup.",
+                benefits: ["Warm", "Aromatic", "Comforting", "Flavorful"],
+                price: 1550,
+                image: "pepper-soup-spices.jpg"
+            },
+            {
+                id: 6,
+                name: "Jollof Rice Seasoning",
+                description: "Created for perfect jollof color, aroma, and flavor.",
+                benefits: ["Balanced taste", "Enhances color", "Smooth consistency"],
+                price: 1900,
+                image: "jollof-rice-seasoning.jpg"
+            },
+            {
+                id: 7,
+                name: "Fried Rice Seasoning",
+                description: "Light, fresh blend for fried rice and stir-fried meals.",
+                benefits: ["Lifts aroma", "Keeps taste subtle and vibrant"],
+                price: 1650,
+                image: "fried-rice-seasoning.jpg"
+            },
+            {
+                id: 8,
+                name: "Turmeric Powder",
+                description: "Natural golden turmeric root.",
+                benefits: ["Anti-inflammatory", "Digestion support", "Natural coloring"],
+                price: 1350,
+                image: "turmeric-powder.jpg"
+            },
+            {
+                id: 9,
+                name: "Thyme Leaves",
+                description: "Classic herbal seasoning.",
+                benefits: ["Enhances aroma", "Blends well with stews and marinades"],
+                price: 1150,
+                image: "thyme-leaves.jpg"
+            },
+            {
+                id: 10,
+                name: "Yaji (Suya Pepper)",
+                description: "Smoky, spicy seasoning for grilled meats and suya.",
+                benefits: ["Adds heat", "Aroma", "Signature suya flavor"],
+                price: 1750,
+                image: "yaji.jpg"
+            },
+            {
+                id: 11,
+                name: "Garlic Powder",
+                description: "Strong savory depth and natural wellness benefits.",
+                benefits: ["Enhances flavor", "Supports immune system"],
+                price: 1250,
+                image: "garlic-powder.jpg"
+            },
+            {
+                id: 12,
+                name: "Chitta (White Pepper Blend)",
+                description: "Mild and aromatic pepper blend for delicate soups.",
+                benefits: ["Smooth balanced heat", "Gentle aroma"],
+                price: 1450,
+                image: "chitta.jpg"
+            }
+            // Removed the last product (Ararrabi) as requested
+        ];
+
+        // Format price in Naira
+        function formatPrice(price) {
+            return `₦${price.toLocaleString()}`;
+        }
+
+        // Generate WhatsApp link for a product
+        function generateWhatsAppLink(productName) {
+            // Using the provided WhatsApp number 08133376629 (converted to international format)
+            const phoneNumber = "2348133376629";
+            const encodedProductName = encodeURIComponent(productName);
+            return `https://wa.me/${phoneNumber}?text=Hello%2C%20I%20want%20to%20order%20${encodedProductName}`;
+        }
+
+        // Render products
+        function renderProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <p class="product-description">${product.description}</p>
+                        <ul class="product-benefits">
+                            ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                        <a href="${generateWhatsAppLink(product.name)}" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+        });
+    </script>
+</body>
+</html>
